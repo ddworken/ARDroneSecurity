@@ -49,10 +49,10 @@ user will be asked to authenticate. There will be two types of authentication (f
     
 #Execution Plan
 
-| Step  |  Difficulty |
-|---|---|
+| Step  |  Difficulty | Completed | Link |
+|---|---|---|---|
 | Set up raspberry pi to host two hotspots at once (using hostapd)            | Easy |
-| Write a python script to authenticate users and direct to different logic depending on authentication level  | Medium  |
+| Write a python script to authenticate users and direct to different logic depending on authentication level  | Medium  | ✓ | [authenticate.py](https://github.com/ddworken/ARDroneSecurity/blob/master/parts/authenticate.py)
 | Allow python script to give authenticated users WPA2 credentials  | Easy  |
 | Interface Camera/Data users with node.js backend to supply them with data  | Hard |
 | Set up AR drone to connect to hard coded WPA2 network  | Medium  |
