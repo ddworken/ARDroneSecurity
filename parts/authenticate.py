@@ -4,6 +4,9 @@ app = Flask(__name__)
 from flaskext.auth import Auth, AuthUser, login_required, logout
 auth = Auth(app, login_url_name='index')
 
+#Set the WPA2 password here. 
+WPA2Key = "secureWPAKey"
+
 #Change the usernames, passwords, and salts!
 creds = [{'username':'admin',   'password':'password', 'salt':'231', 'level':'control' },
          {'username':'control', 'password':'password', 'salt':'925', 'level':'control' },
@@ -24,7 +27,8 @@ def init_users():
 
 @login_required()
 def admin():
-    return '''Authenticated to control the drone. <br> 
+    return '''Authenticated to control the drone. <br>
+              To control the drone, connect to the network called DroneControl with the key: <code>''' + WPA2Key + '''</code> <br> 
               <a href="/logout/">Log Out</a>'''
 
 @login_required()
@@ -68,4 +72,3 @@ app.secret_key = '9b9777081187a5254ac5a4c2018e775d'
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-david@DAVID-6120-SERVER:~/summerResearch$ 
