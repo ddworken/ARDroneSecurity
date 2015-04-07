@@ -8,6 +8,10 @@ auth = Auth(app, login_url_name='index')
 WPA2Key = "secureWPAKey"
 
 #Change the usernames, passwords, and salts!
+#    -username is the username to log in with
+#    -password is your password (change this to a secure password!)
+#    -salt is a randomly generated salt for password hashing
+#    -level is the user's authentication level. Valid options are control and dataOnly
 creds = [{'username':'admin',   'password':'password', 'salt':'231', 'level':'control' },
          {'username':'control', 'password':'password', 'salt':'925', 'level':'control' },
          {'username':'data',    'password':'password', 'salt':'761', 'level':'dataOnly'}
@@ -45,8 +49,9 @@ def index():
         if username in g.dataOnly:
             if g.dataOnly[username].authenticate(request.form['password']):
                 return redirect(url_for('dataOnly'))
-        return 'Failure :('
-    return '''
+        return 'Authentication Failed'
+    #if request method is not POST, then simply return the form
+    return ''' 
             Please authenticate to control the AR Drone. 
             <form method="POST">
                 Username: <input type="text" name="username"/><br/>
