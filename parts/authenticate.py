@@ -4,8 +4,11 @@ app = Flask(__name__)
 from flaskext.auth import Auth, AuthUser, login_required, logout
 auth = Auth(app, login_url_name='index')
 
-#Set the WPA2 password here. 
-WPA2Key = "secureWPAKey"
+
+#Set the WPA2 password here.
+with open('WPA2.txt') as file:
+    lines = file.read().splitlines()
+WPA2Key = lines[0]
 
 #Change the usernames, passwords, and salts!
 #    -username is the username to log in with
