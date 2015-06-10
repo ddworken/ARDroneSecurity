@@ -1,0 +1,13 @@
+sudo ifconfig wlan0 192.168.42.1  #set ip address on wlan0
+sudo ifconfig wlan1 192.168.43.1  #set ip address on wlan1
+
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward" #enable connection forwarding
+
+#enable NAT
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+
+#restart the services
+sudo service hostapd start
+sudo service udhcpd start
